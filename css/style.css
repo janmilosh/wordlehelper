@@ -1,0 +1,22 @@
+:root {
+  --color-present: #c9b458;
+  --color-correct: #6aaa64;
+  --color-absent: #787c7e;
+  --color-border: #d3d6da;
+}
+
+.tile[data-state=absent] {
+  background-color: var(--color-absent);
+}
+
+.tile[data-state=present] {
+  background-color: var(--color-present);
+}
+
+.tile[data-state=correct] {
+  background-color: var(--color-correct);
+}
+
+.tile[data-state=empty] {
+  border: 2px solid var(--color-border);
+}
