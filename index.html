@@ -5,12 +5,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wordle Helper</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@2.1.0/build/pure-min.css"
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@2.1.0/build/pure-min.css"
     integrity="sha384-yHIFVG6ClnONEA5yB5DJXfW2/KC173DIQrYoZMEtBvGzmf0PKiGyNEqe9N6BNDBH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@2.1.0/build/grids-responsive-min.css" /> -->
+  <link rel="stylesheet" href="./css/normalize.css">
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-  <div id="app">The Wordle of the day is {{ message }}.</div>
+  <div id="app">
+    <div class=""></div>
+    <div v-for="(letter, index) in letters">
+      <div @click="toggleState(index)" class="tile" :data-state="letter.state">{{ letter.text }}</div>
+    </div>
+  </div>
   
   <script src="https://unpkg.com/vue@3"></script>
   <script src="./js/words.js"></script>
