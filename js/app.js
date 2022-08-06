@@ -106,6 +106,7 @@ createApp({
       inputElement.style.visibility = 'visible';
       inputElement.focus();
       inputElement.style.visibility = 'hidden';
+      window.scrollTo(0,0);
     }
   }
 }).mount('#app')
