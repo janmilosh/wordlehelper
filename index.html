@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-  <div id="app" @keydown="inputLetter($event, index)">
+  <div id="app">
     <div class="grid">
       <div class="tile-outer" v-for="(letter, index) in letters">
         <div @click="toggleState(index)"
@@ -25,7 +25,10 @@
         </div>
       </div>
     </div>
+    <button @click="openKeyboard()">Open Keyboard</button>
+    <input id="hiddenInput" style="visibility: hidden;">
   </div>
+  <script src="./js/modernizr_3.6.0.js"></script>
   <script src="https://unpkg.com/vue@3"></script>
   <script src="./js/words.js"></script>
   <script src="./js/app.js"></script>

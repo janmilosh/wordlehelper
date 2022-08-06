@@ -58,3 +58,8 @@
   border: 2px solid var(--color-border);
   color: var(--dark-text);
 }
+
+
+html.no-touchevents button {
+  display: none;
+}
