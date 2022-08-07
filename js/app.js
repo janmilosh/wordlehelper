@@ -7,6 +7,9 @@ createApp({
       indexCounter: 0,
       correct: [null, null, null, null, null],
       inWord: [],
+      present: [],
+      absent: [],
+      wordList: [],
       wordsArray: [[0, 5, 10, 15, 20, 25],
                   [1, 6, 11, 16, 21, 26],
                   [2, 7, 12, 17, 22, 27],
@@ -66,10 +69,13 @@ createApp({
     },
     updateWordList() {
       if (this.rowsComplete()) {
+        this.wordList = words
         this.updateInWordLetters();
         this.updateCorrect();
-        console.log(`correct letters: ${this.correct}`);
-        console.log(`in word letters: ${this.inWord}`);
+        this.updatePresent();
+        this.updateAbsent();
+        this.filterForInWord();
+        this.filterForAbsent();
       }
     },
     rowsComplete() {
@@ -89,6 +95,30 @@ createApp({
       }
       this.inWord = [...new Set(this.inWord)];
     },
+    updateAbsent() {
+      this.absent = []
+      this.wordsArray.forEach((wordArr, column) => {
+        wordArr.forEach((lettersIndex, row) => {
+          let state = this.letters[lettersIndex].state
+          let letter = this.letters[lettersIndex].text
+          if (state === 'absent') {
+            this.absent.push(letter);
+          }
+        });
+      });
+    },
+    updatePresent() {
+      this.present = [[], [], [], [], []]
+      this.wordsArray.forEach((wordArr, column) => {
+        wordArr.forEach((lettersIndex, row) => {
+          let state = this.letters[lettersIndex].state
+          let letter = this.letters[lettersIndex].text
+          if (state === 'present') {
+            this.present[column].push(letter);
+          }
+        });
+      });
+    },
     updateCorrect() {
       this.correct = [null, null, null, null, null]
       this.wordsArray.forEach((wordArr, column) => {
@@ -99,6 +129,16 @@ createApp({
             this.correct[column] = letter;
           }
         });
+      });
+    },
+    filterForInWord() {
+      this.inWord.forEach((letter) => {
+        this.wordList = this.wordList.filter(word => word.toUpperCase().includes(letter))
+      });
+    },
+    filterForAbsent() {
+      this.absent.forEach((letter) => {
+        this.wordList = this.wordList.filter(word => !word.toUpperCase().includes(letter))
       });
     },
     openKeyboard() {

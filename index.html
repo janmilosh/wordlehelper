@@ -25,6 +25,9 @@
         </div>
       </div>
     </div>
+    <div v-if="indexCounter > 0" class="results-grid">
+      <div class="word" v-for="word in wordList">{{ word }}</div>
+    </div>
     <button @click="openKeyboard()">Open Keyboard</button>
     <input id="hiddenInput" style="visibility: hidden;">
   </div>
