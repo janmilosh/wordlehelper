@@ -5,6 +5,7 @@ createApp({
     return {
       letters: [],
       indexCounter: 0,
+      regex: '',
       correct: [null, null, null, null, null],
       inWord: [],
       present: [],
@@ -76,6 +77,7 @@ createApp({
         this.updateAbsent();
         this.filterForInWord();
         this.filterForAbsent();
+        this.filterForPosition();
       }
     },
     rowsComplete() {
@@ -140,6 +142,24 @@ createApp({
       this.absent.forEach((letter) => {
         this.wordList = this.wordList.filter(word => !word.toUpperCase().includes(letter))
       });
+    },
+    filterForPosition() {
+      this.buildRegex();
+      let re = new RegExp(this.regex)
+      this.wordList = this.wordList.filter(word => re.test(word.toUpperCase()))
+    },
+    buildRegex() {
+      this.regex = '';
+      console.log(this.present)
+      for (let i = 0; i < 5; i++) {
+        if (this.correct[i]) {
+          this.regex += this.correct[i];
+        } else if (this.present[i].length >= 1) {
+          this.regex += `[^${this.present[i].join('')}]`;
+        } else {
+          this.regex += '.';
+        }
+      }
     },
     openKeyboard() {
       let inputElement = document.getElementById('hiddenInput');
