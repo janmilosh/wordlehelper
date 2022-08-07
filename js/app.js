@@ -5,6 +5,7 @@ createApp({
     return {
       letters: [],
       indexCounter: 0,
+      inputValue: '',
       regex: '',
       correct: [null, null, null, null, null],
       inWord: [],
