@@ -59,6 +59,21 @@
   color: var(--dark-text);
 }
 
+.results-grid {
+  width: 350px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.word {
+  width: 54px;
+  background: #eee;
+  padding: 4px;
+  text-align: center;
+}
 
 html.no-touchevents button {
   display: none;
