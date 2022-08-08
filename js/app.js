@@ -102,9 +102,11 @@ createApp({
       this.absent = []
       this.wordsArray.forEach((wordArr, column) => {
         wordArr.forEach((lettersIndex, row) => {
-          let state = this.letters[lettersIndex].state
-          let letter = this.letters[lettersIndex].text
-          if (state === 'absent') {
+          let state = this.letters[lettersIndex].state;
+          let letter = this.letters[lettersIndex].text;
+          let inCorrect = this.correct.includes(letter);
+          let inInWord = this.inWord.includes(letter);
+          if (state === 'absent' && !inCorrect && !inInWord) {
             this.absent.push(letter);
           }
         });
