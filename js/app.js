@@ -153,7 +153,6 @@ createApp({
     },
     buildRegex() {
       this.regex = '';
-      console.log(this.present)
       for (let i = 0; i < 5; i++) {
         if (this.correct[i]) {
           this.regex += this.correct[i];
